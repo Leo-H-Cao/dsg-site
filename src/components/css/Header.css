@@ -1,0 +1,23 @@
+@font-face{
+    font-family: "Stafford Serial";
+    src: url("../fonts/stafford-serial-medium-regular-webfont.woff");
+}
+
+.color-nav{
+    background-color: rgb(1,33,105);
+}
+
+.dsg-logo{
+    font-family: "Stafford Serial";
+    letter-spacing: 0.1rem;
+    padding: 0.25rem;
+    padding-left: 0.75rem;
+    font-size: 1.8rem;
+    margin: 0 auto;
+}
+
+.navbar-link{
+    font-size: 1.25rem;
+    font-family: 'PT Serif', serif;
+    padding-right: 0.75rem;
+}
