@@ -7,7 +7,7 @@ const items = [
         title: "Date",
         cardTitle: "Title",
         cardSubtitle: "Subtitle",
-        cardDetailedText: "Description"
+        cardDetailedText: "Description",
     },
     {
         title: "Date",
