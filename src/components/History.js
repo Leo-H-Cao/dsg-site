@@ -2,40 +2,56 @@ import React from 'react';
 import './css/History.css';
 import {Chrono} from 'react-chrono';
 
-const items = [
-    {
-        title: "Date",
-        cardTitle: "Title",
-        cardSubtitle: "Subtitle",
-        cardDetailedText: "Description",
-    },
-    {
-        title: "Date",
-        cardTitle: "Title",
-        cardSubtitle: "Subtitle",
-        cardDetailedText: "Description"
-    },
-    {
-        title: "Date",
-        cardTitle: "Title",
-        cardSubtitle: "Subtitle",
-        cardDetailedText: "Description"
-    },
-    {
-        title: "Date",
-        cardTitle: "Title",
-        cardSubtitle: "Subtitle",
-        cardDetailedText: "Description"
-    },
-    {
-        title: "Date",
-        cardTitle: "Title",
-        cardSubtitle: "Subtitle",
-        cardDetailedText: "Description"
-    }
-];
 
-function History(){
+const History = ()=>{
+
+    const items = [
+        {
+            title: "Date",
+            cardTitle: "Beginnings",
+            cardSubtitle: "Native Americans",
+            cardDetailedText: "The area that is now Durham was \
+            originally inhabited by the Eno and the Occaneechi tribes. \
+            What is now called the Eno \
+            River State park was where the Eno tribe lived. \
+            The ancient Native American village of Adshusheer was \
+            supposedly located in the Durham area.  \
+            Later, Europeans named the Carolinas after King Charles I \
+            of England. In the mid-1700s European colonists began \
+            to settle in the area and farm the land.",
+            media: {
+                type: "IMAGE",
+                source: {
+                    url: "./eno-river.jpg"
+                },
+            }
+        },
+        {
+            title: "Date",
+            cardTitle: "Title",
+            cardSubtitle: "Subtitle",
+            cardDetailedText: "Description"
+        },
+        {
+            title: "Date",
+            cardTitle: "Title",
+            cardSubtitle: "Subtitle",
+            cardDetailedText: "Description"
+        },
+        {
+            title: "Date",
+            cardTitle: "Title",
+            cardSubtitle: "Subtitle",
+            cardDetailedText: "Description"
+        },
+        {
+            title: "Date",
+            cardTitle: "Title",
+            cardSubtitle: "Subtitle",
+            cardDetailedText: "Description"
+        }
+    ];
+    
     return(
         <div>
             <h1 className="history-header">HISTORY</h1>
