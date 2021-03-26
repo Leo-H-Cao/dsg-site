@@ -1,35 +1,61 @@
-import React from "react";
 import GoogleMapReact from "google-map-react";
 import "./css/Map.css";
+import axios from "axios";
+import Marker from "./Marker";
+import React from "react";
+import InfoWindow from "./InfoWindow";
 
-const Map = function ({ location, zoomLevel }) {
-  return (
-    <div className="map">
-      <div className="google-map">
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyBiKyKpE5LGCho-y-3CBlh6OPE6WqxQMK0" }}
-          defaultCenter={location}
-          defaultZoom={zoomLevel}
-        >
-          <Marker
-            lat={36.001427}
-            lng={-78.938232}
-            name="My Marker"
-            color="blue"
+export default class Map extends React.Component {
+  state = {
+    restaurants: [],
+    selectedPlace: "",
+    showingInfoWindow: false,
+  };
+
+  componentDidMount() {
+    axios
+      .get("https://strapi-dsg-api.herokuapp.com/eateries")
+      .then((res) => this.setState({ restaurants: res.data }));
+  }
+
+  render = () => {
+    return (
+      <div className="map">
+        <div className="google-map">
+          <GoogleMapReact
+            bootstrapURLKeys={{
+              key: "AIzaSyBiKyKpE5LGCho-y-3CBlh6OPE6WqxQMK0",
+            }}
+            defaultCenter={this.props.location}
+            defaultZoom={this.props.zoomLevel}
+          >
+            {this.state.restaurants.map((restaurant) =>
+              this.renderMarker(restaurant)
+            )}
+          </GoogleMapReact>
+          <InfoWindow
+            title={this.state.selectedPlace}
+            visible={this.state.showingInfoWindow}
           />
-        </GoogleMapReact>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
-const Marker = function (name) {
-  return (
-    <div>
-      <div className="pin bounce" style={{ cursor: "pointer" }} title={name} />
-      <div className="pulse" />
-    </div>
-  );
-};
+  handleMarkerClick = (e) => {
+    console.log(e.target.title);
+    this.setState({ selectedPlace: e.target.title, showingInfoWindow: true });
+  };
 
-export default Map;
+  renderMarker = (restaurant) => {
+    return (
+      <Marker
+        key={restaurant.id}
+        lat={restaurant.xCoord}
+        lng={restaurant.yCoord}
+        name={restaurant.name}
+        onClick={this.handleMarkerClick}
+      />
+    );
+  };
+}
