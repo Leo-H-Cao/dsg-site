@@ -3,3 +3,11 @@
     padding: 2rem;
     text-align: center;
 }
+
+.service-site{
+    width: 70%;
+    height: 75rem;
+    display: block;
+    margin: 1rem auto;
+    margin-bottom: 4rem;
+}
