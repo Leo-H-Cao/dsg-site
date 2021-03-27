@@ -3,8 +3,8 @@ import "./css/Dining.css";
 import Map from "./Map";
 
 const location = {
-  lat: 36.001427,
-  lng: -78.938232,
+  lat: 36.00053,
+  lng: -78.91066,
 };
 
 function Dining() {
