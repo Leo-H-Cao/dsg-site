@@ -4,11 +4,6 @@ import axios from "axios";
 import Marker from "./Marker";
 import React from "react";
 import InfoWindow from "./InfoWindow";
-import {
-  K_SIZE,
-  greatPlaceStyle,
-  greatPlaceStyleHover,
-} from "./HoverStyles.js";
 
 export default class Map extends React.Component {
   state = {
@@ -34,7 +29,6 @@ export default class Map extends React.Component {
             }}
             defaultCenter={this.props.location}
             defaultZoom={this.props.zoomLevel}
-            hoverDistance={K_SIZE / 2}
           >
             {this.state.restaurants.map((restaurant) =>
               this.renderMarker(restaurant)
