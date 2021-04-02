@@ -7,6 +7,7 @@ class Marker extends React.Component {
         className="pin bounce"
         style={{ cursor: "pointer" }}
         title={this.props.name}
+        id={this.props.restaurantId}
       />
     </div>
   );

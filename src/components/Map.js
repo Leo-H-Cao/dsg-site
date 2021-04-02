@@ -4,12 +4,18 @@ import axios from "axios";
 import Marker from "./Marker";
 import React from "react";
 import InfoWindow from "./InfoWindow";
+import {
+  K_SIZE,
+  greatPlaceStyle,
+  greatPlaceStyleHover,
+} from "./HoverStyles.js";
 
 export default class Map extends React.Component {
   state = {
     restaurants: [],
     selectedPlace: "",
     showingInfoWindow: false,
+    selectedPlaceId: 1,
   };
 
   componentDidMount() {
@@ -28,23 +34,35 @@ export default class Map extends React.Component {
             }}
             defaultCenter={this.props.location}
             defaultZoom={this.props.zoomLevel}
+            hoverDistance={K_SIZE / 2}
           >
             {this.state.restaurants.map((restaurant) =>
               this.renderMarker(restaurant)
             )}
+            <InfoWindow
+              lat={
+                this.state.restaurants[this.state.selectedPlaceId - 1]?.xCoord
+              }
+              lng={
+                this.state.restaurants[this.state.selectedPlaceId - 1]?.yCoord
+              }
+              title={this.state.selectedPlace}
+              visible={this.state.showingInfoWindow}
+            />
           </GoogleMapReact>
-          <InfoWindow
-            title={this.state.selectedPlace}
-            visible={this.state.showingInfoWindow}
-          />
         </div>
       </div>
     );
   };
 
   handleMarkerClick = (e) => {
-    console.log(e.target.title);
-    this.setState({ selectedPlace: e.target.title, showingInfoWindow: true });
+    console.log(e.target);
+    console.log(this.state.restaurants);
+    this.setState({
+      selectedPlace: e.target.title,
+      selectedPlaceId: e.target.id,
+      showingInfoWindow: true,
+    });
   };
 
   renderMarker = (restaurant) => {
@@ -54,6 +72,7 @@ export default class Map extends React.Component {
         lat={restaurant.xCoord}
         lng={restaurant.yCoord}
         name={restaurant.name}
+        restaurantId={restaurant.id}
         onClick={this.handleMarkerClick}
       />
     );
